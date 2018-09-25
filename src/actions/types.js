@@ -1,0 +1,2 @@
+export const FETCH_TODO_LIST = 'FETCH_TODO_LIST';
+export const FETCH_NEW_TODO = 'FETCH_NEW_TODO';
