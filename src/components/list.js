@@ -10,10 +10,11 @@ class List extends Component {
     }
 
 	render() {
+        console.log(this.props.lists)
 		return (
 			<ul>
-				{this.props.todolists.map(i => {
-					return <li key={i.id}>{i.title}</li>;
+				{this.props.lists.map((i, ix) => {
+					return <li key={ix}>{i.title}</li>;
 				})}
 			</ul>
 		);
@@ -22,11 +23,11 @@ class List extends Component {
 
 List.propTypes = {
     fetchToDoList: PropTypes.func.isRequired,
-    todolists: PropTypes.array.isRequired
+    lists: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({
-    todolists: state.todolists.lists
+    lists: state.lists.lists
 })
 
 export default connect(mapStateToProps, { fetchToDoList })(List);

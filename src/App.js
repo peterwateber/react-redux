@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import { Form } from './components/form';
+import Form from './components/form';
 import List from './components/list';
 
 import { Provider } from 'react-redux';

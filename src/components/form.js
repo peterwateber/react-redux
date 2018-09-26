@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-export class Form extends Component {
+import { postToDoList } from '../actions/todoListActions';
+
+class Form extends Component {
     constructor(props){
         super(props)
         this.state = {
-            todo: ''
+            title: ''
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -17,25 +21,21 @@ export class Form extends Component {
     onSubmit(e) {
         e.preventDefault();
         const formData = {
-            todo: this.state.todo
+            title: this.state.title
         };
-        fetch('https://jsonplaceholder.typicode.com/posts', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        }).then(res => res.json())
-        .then(data => console.log(data))
+        this.props.postToDoList(formData);
     }
 	render() {
 		return (
 			<form onSubmit={this.onSubmit}>
 				<div className="form-control">
-					<input name="todo" onChange={this.onChange} placeholder="Something..." value={this.state.todo} />
+					<input name="title" onChange={this.onChange} placeholder="Something..." value={this.state.title} />
 				</div>
 				<button type="submit">Post</button>
 			</form>
 		);
 	}
 }
+
+
+export default connect(null, { postToDoList })(Form);
